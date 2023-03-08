@@ -14,4 +14,7 @@ We made three different graph for it. They are bar charts, scatter charts, and t
 * The third picture is a table. There are two tables that are fixed. They record the countries with the highest and the lowest Ladder Score, respectively. Users can change the region according to their needs by using the option bar on the right. Thus, the situation in different regions can be viewed. The chart includes the average, standard deviation, minimum, maximum and median of Healthy life expectancy and Ladder score.
 
 ## Link of the shinyapps
+https://nzq001.shinyapps.io/info-201-group-BA3/
 
+## Hours
+3days
