@@ -15,7 +15,7 @@ ui <- fluidPage(
                  src = "world happiness.png", height = '400px', width = '700px'),
              h2("Project Overview"),
              p("The world happiness report provides a brife summary of how does different ",
-               "factors affect a country's happiness level in 2021. With the results, the report will ",
+               "factors affect a region's happiness level in 2021. With the results, the report will ",
                "clearly show the relationship between happiness and logged GDP per capita ",
                ", the relationship between happiness and healthy life expectancy and ",
                "the average world happiness in 2021. We hope the report could help reader have ",
@@ -74,9 +74,9 @@ ui <- fluidPage(
           mainPanel(
             tableOutput("table"),  # table output
             verbatimTextOutput("text"),  # render dynamic text
-            h4("Region with the highest average happiness score"),
+            h4("Country in the region with the highest average happiness score"),
             tableOutput("table1"),  # table output
-            h4("Region with the lowest average happiness score"),
+            h4("Country in the region with the lowest average happiness score"),
             tableOutput("table2"),  # table output
             verbatimTextOutput("text2")
           )
@@ -117,7 +117,7 @@ server <- function(input, output) {
       filter(`Regional indicator`==input$region) %>%
       ggplot(aes(x=`Logged GDP per capita`, y=`Ladder score`)) + geom_point()
     if(input$trend) {
-      # add a trend line
+      # add a trend line(ggplot2 geom_smooth)
       p <- p + geom_smooth(method="lm", se=F)
     }
     p
@@ -180,7 +180,7 @@ ladder score. User could select their interested region to see or compare.")
       pull(`Regional indicator`)
     happiness %>%
       filter(`Regional indicator`==region) %>%
-      select(`Regional indicator`,`Country name`, `Ladder score`, `Healthy life expectancy`)
+      select(`Country name`, `Ladder score`, `Healthy life expectancy`)
   })
   
   output$table2 <- renderTable({
@@ -192,7 +192,7 @@ ladder score. User could select their interested region to see or compare.")
       pull(`Regional indicator`)
     happiness %>%
       filter(`Regional indicator`==region) %>%
-      select(`Regional indicator`, `Country name`, `Ladder score`, `Healthy life expectancy`)
+      select(`Country name`, `Ladder score`, `Healthy life expectancy`)
   })
   
   output$text <- renderText({
