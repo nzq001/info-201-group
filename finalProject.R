@@ -39,6 +39,7 @@ ui <- fluidPage(
                               selected = "Western Europe")
                ),
                mainPanel(
+                 verbatimTextOutput("text3"),
                  # the scatter plot output
                  plotlyOutput("international"))
              )),
@@ -131,6 +132,11 @@ If the Trend Line is trending down, then the two variables are negatively correl
 It indicates that the higher the GDP, the lower the Ladder Score.")
   })
   
+  output$text3 <- renderText({
+    paste0("This chart could help user have a better understanding of different region's
+ladder score. User could select their interested region to see or compare.")
+  })
+  
   output$international <- renderPlotly({
     inter <- happiness %>%
       filter(`Regional indicator` %in% input$regional) %>%
@@ -207,15 +213,6 @@ Thus, the situation in different regions can be viewed.
 The chart includes the average, standard deviation, minimum, maximum and median of Healthy life expectancy and Ladder score.")
   })
   
-  output$text <- renderText({
-    # filter data
-    df <- happiness %>%
-      filter(`Regional indicator`==input$region) 
-    # calculate the correlation coefficient
-    paste0("The selected region is ", input$region, 
-           "\nThe correlation coefficient between happiness and Healthy life expectancy is ", 
-           round(cor(df$`Ladder score`, df$`Healthy life expectancy`), 2))
-  })
 }
 
 # Run the application 
