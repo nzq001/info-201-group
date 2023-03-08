@@ -2,7 +2,7 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(plotly)
-happiness <- read_delim("world-happiness-report-2021.csv.xls")
+happiness <- read_delim("worldhappinessreport2021.csv.xls")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
