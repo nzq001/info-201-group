@@ -198,9 +198,9 @@ ladder score. User could select their interested region to see or compare.")
   output$text <- renderText({
     # filter data
     df <- happiness %>%
-      filter(`Regional indicator`==input$region) 
+      filter(`Regional indicator`==input$region2) 
     # calculate the correlation coefficient
-    paste0("The selected region is ", input$region, 
+    paste0("The selected region is ", input$region2, 
            "\nThe correlation coefficient between happiness and Healthy life expectancy is ", 
            round(cor(df$`Ladder score`, df$`Healthy life expectancy`), 2))
   })
